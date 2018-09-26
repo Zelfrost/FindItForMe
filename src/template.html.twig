@@ -1,0 +1,15 @@
+{% for offer in offers %}
+    <b>{{ offer.title }}</b><br>
+
+    {% if null != offer.price %}
+        Prix : {{ offer.price }}<br>
+    {% else %}
+        Pas de prix définit.<br>
+    {% endif %}
+
+    Lien : {{ offer.url }}<br>
+
+    {% if loop.last == false %}
+        <br><hr><br>
+    {% endif %}
+{% endfor %}

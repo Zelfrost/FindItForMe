@@ -1,0 +1,18 @@
+parameters:
+    smtp:
+        url: smtp url
+        port: smtp port
+        encryption: smtp encryption
+
+        auth_mode: smtp auth mode
+        username: smtp username
+        password: smtp password
+
+    mail:
+        from: from mail
+        to: to mail
+        title: mail title
+
+    leboncoin:
+        url: https://www.leboncoin.fr/recherche/
+        region: 1 # Your region id on leboncoin

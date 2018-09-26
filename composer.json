@@ -1,0 +1,16 @@
+{
+    "name": "ddeconinck/findItForMe",
+    "authors": [
+        {
+            "name": "Damien Deconinck",
+            "email": "deconinck.damien@gmail.com"
+        }
+    ],
+    "require": {
+        "symfony/dom-crawler": "^3.4",
+        "guzzle/http": "^3.9",
+        "twig/twig": "^2.5",
+        "symfony/yaml": "^3.4",
+        "symfony/swiftmailer-bundle": "^3.2"
+    }
+}
