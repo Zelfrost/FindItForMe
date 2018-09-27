@@ -34,15 +34,17 @@ You can run it using 3 different ways, depending on your dependencies :
 
 The command has some options :
 
-- **-s** or **--silent**: if set, you won't receive any mail on this run. This is usefull to avoid getting 35 ads when
+- **-nm** or **--no-mail**: if set, you won't receive any mail on this run. This is usefull to avoid getting 35 ads when
 you run the command for the first time. (Default: false)
-- **-i** or **--ignore-no-price** : this option is used to tell that you don't want ads that do not have a price.
+- **-v** or **--verbose**: if set, ads will be displayed on the standard output, with this format:
+`title|price|url`. (Default: false)
+- **-i** or **--ignore-no-price**: this option is used to tell that you don't want ads that do not have a price.
 (Default: false)
-- **-r** or **--range** : this option authorize you to set the price range. For example `20-100` means you will only
+- **-r** or **--range**: this option authorize you to set the price range. For example `20-100` means you will only
 receive ads with prices between 20 and 100 euros. A range has to be two numerics separated by a dash. (Default: none)
-- **-min** or **--min-price** : this option can be used to define only the minimum price of the ads you will receive.
+- **-min** or **--min-price**: this option can be used to define only the minimum price of the ads you will receive.
 (Default: none)
-- **-max** or **--max-price** : this option can be used to define only the maximum price of the ads you will receive.
+- **-max** or **--max-price**: this option can be used to define only the maximum price of the ads you will receive.
 (Default: none)
 
 After (or before, or in the middle) of all those options, you can add arguments.

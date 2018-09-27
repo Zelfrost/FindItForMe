@@ -1,11 +1,12 @@
 <?php
 
 /**
- * @method static getParameters()
+ * @method static getParameters(): array
  * @method static getMinPrice()
  * @method static getMaxPrice()
- * @method static authorizeNoPrice()
- * @method static sendMail()
+ * @method static authorizeNoPrice(): bool
+ * @method static isVerbose(); bool
+ * @method static sendMail(): bool
  */
 class Args
 {
@@ -15,6 +16,7 @@ class Args
     private static $minPrice = null;
     private static $maxPrice = null;
     private static $noPrice = true;
+    private static $verbose = true;
     private static $sendMail = true;
 
     public static function __callStatic($name, $arguments)
@@ -43,9 +45,14 @@ class Args
         array_shift($argv);
         for ($i = 0; $i < sizeof($argv); $i ++) {
             switch ($argv[$i]) {
-                case '-s':
-                case '--silent':
+                case '-nm':
+                case '--no-mail':
                     self::$sendMail = false;
+
+                    break;
+                case '-v':
+                case '--verbose':
+                    self::$verbose = true;
 
                     break;
                 case '-r':

@@ -7,6 +7,7 @@ $offers = [];
 $requester = new Requester();
 $crawler = new Crawler();
 $database = new Database();
+$printer = new Printer();
 
 foreach ($crawler->getOffers($requester->getContent(Args::getParameters())) as $offer) {
     $details = $crawler->getDetails($offer);
@@ -29,9 +30,17 @@ foreach ($crawler->getOffers($requester->getContent(Args::getParameters())) as $
     $offers[] = $details;
 }
 
-if (Args::sendMail() && !empty($offers)) {
+if (empty($offers)) {
+    return;
+}
+
+if (Args::sendMail()) {
     $renderer = new Renderer();
     $mailer = new Mailer();
 
     $mailer->send($renderer->render($offers));
+}
+
+if (Args::isVerbose()) {
+    $printer->print($offers);
 }
