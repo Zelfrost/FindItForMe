@@ -6,9 +6,9 @@ class Database
 
     public function offerAlreadyExist($identifier)
     {
-        $database = explode("\n", file_get_contents(self::DATABASE_PATH));
+        exec("grep '$identifier' base|wc -l", $output);
 
-        return in_array($identifier, $database);
+        return 0 !== (int) $output[0];
     }
 
     public function putOffer($identifier)
