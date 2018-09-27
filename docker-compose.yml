@@ -1,6 +1,12 @@
 version: '2'
 
 services:
+    install:
+        image: composer:latest
+        volumes:
+            - ./:/app
+        entrypoint: composer install
+
     findItForMe:
         image: php:7.0-cli
         volumes:

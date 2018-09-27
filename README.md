@@ -8,10 +8,25 @@ All you need is PHP 7.0, at least, and composer, or docker, and optionally docke
 
 ## How do I install it?
 
-All you have to do is run a composer install, and duplicate the parameters :
+This depend on your dependencies :
 
+- If you run PHP directly, just run:
 ```bash
 composer install
+```
+
+- If you run it using docker, you can do:
+```bash
+docker run -v $(pwd):/app composer:latest composer install
+```
+
+- If you also have docker-compose, you can do:
+```bash
+docker-compose run install
+```
+
+Whatever your case is, the last thing you shoud do is:
+```bash
 cp parameters.yml.dist parameters.yml
 ```
 
