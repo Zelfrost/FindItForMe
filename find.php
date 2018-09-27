@@ -20,9 +20,9 @@ foreach ($crawler->getOffers($requester->getContent(Args::getParameters())) as $
 
     if (null === $details['price'] && !Args::authorizeNoPrice()) {
         continue;
-    } elseif (Args::getMinPrice() > $details['price']) {
+    } elseif (null !== Args::getMinPrice() && Args::getMinPrice() > $details['price']) {
         continue;
-    } elseif (Args::getMaxPrice() < $details['price']) {
+    } elseif (null !== Args::getMaxPrice() && Args::getMaxPrice() < $details['price']) {
         continue;
     }
 

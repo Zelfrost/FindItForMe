@@ -1,0 +1,8 @@
+version: '2'
+
+services:
+    findItForMe:
+        image: php:7.0-cli
+        volumes:
+            - ./:/var/www/findItForMe
+        entrypoint: php /var/www/findItForMe/find.php

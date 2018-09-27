@@ -4,8 +4,7 @@ This project is a simple PHP parser for the website *Leboncoin.fr*.
 
 ## What do I need?
 
-- PHP 7.0, at least
-- composer
+All you need is PHP 7.0, at least, and composer, or docker, and optionally docker-compose.
 
 ## How do I install it?
 
@@ -22,19 +21,29 @@ All you have to do is edit the `parameters.yml` file :
 
 - The **smtp** section is about how it will send mail.
 - The **mail** part is about the email you will receive.
-- The **leboncoin** part is about the website and your region.
+- The **leboncoin** part is about the website and your region. You can find you region id by processing a search on
+*Leboncoin.fr* on your web browser (with you region defined), and having a look at the parameter **regions**.
 
 ## And finally, how do I run it?
 
-Here, you have some options :
+You can run it using 3 different ways, depending on your dependencies :
+- If you only have PHP on your computer/server, just run `php find.php`
+- If you have docker on your computer/server, you can run 
+`docker run -v $(pwd):/var/www/findItForMe php:7.0-cli php /var/www/findItForMe/find.php`
+- If you also have docker-compose, you can run : `docker-compose run findItForMe`
+
+The command has some options :
 
 - **-s** or **--silent**: if set, you won't receive any mail on this run. This is usefull to avoid getting 35 ads when
-you run the command for the first time.
-- **-r** or **--range** : this option authorize you to set the price range. For example `20-100` means you will only
-receive ads with prices between 20 and 100 euros. A range has to be two numerics separated by a dash.
-- **-min** or **--min-price** : this option can be used to define only the minimum price of the ads you will receive.
-- **-max** or **--max-price** : this option can be used to define only the maximum price of the ads you will receive.
+you run the command for the first time. (Default: false)
 - **-i** or **--ignore-no-price** : this option is used to tell that you don't want ads that do not have a price.
+(Default: false)
+- **-r** or **--range** : this option authorize you to set the price range. For example `20-100` means you will only
+receive ads with prices between 20 and 100 euros. A range has to be two numerics separated by a dash. (Default: none)
+- **-min** or **--min-price** : this option can be used to define only the minimum price of the ads you will receive.
+(Default: none)
+- **-max** or **--max-price** : this option can be used to define only the maximum price of the ads you will receive.
+(Default: none)
 
 After (or before, or in the middle) of all those options, you can add arguments.
 Each argument should have this follow this template : `name:value`.

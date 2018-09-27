@@ -6,7 +6,7 @@ class Database
 
     public function offerAlreadyExist($identifier)
     {
-        exec("grep '$identifier' base|wc -l", $output);
+        exec(sprintf('grep "%s" %s|wc -l', $identifier, self::DATABASE_PATH), $output);
 
         return 0 !== (int) $output[0];
     }
