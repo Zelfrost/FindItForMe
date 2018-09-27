@@ -10,19 +10,19 @@ All you need is PHP 7.0, at least, and composer, or docker, and optionally docke
 
 This depend on your dependencies :
 
-- If you run PHP directly, just run:
+- If you have docker-compose, you can do:
 ```bash
-composer install
+docker-compose run install
 ```
 
-- If you run it using docker, you can do:
+- If you only have docker, you can do:
 ```bash
 docker run -v $(pwd):/app composer:latest composer install
 ```
 
-- If you also have docker-compose, you can do:
+- If you run PHP directly, just do:
 ```bash
-docker-compose run install
+composer install
 ```
 
 Whatever your case is, the last thing you shoud do is:
@@ -41,11 +41,24 @@ All you have to do is edit the `parameters.yml` file :
 
 ## And finally, how do I run it?
 
-You can run it using 3 different ways, depending on your dependencies :
-- If you only have PHP on your computer/server, just run `php find.php`
-- If you have docker on your computer/server, you can run 
-`docker run -v $(pwd):/var/www/findItForMe php:7.0-cli php /var/www/findItForMe/find.php`
-- If you also have docker-compose, you can run : `docker-compose run findItForMe`
+This depend on your dependencies :
+
+- If you have docker-compose, you can do:
+```bash
+docker-compose run findItForMe
+```
+
+- If you only have docker, you can do:
+```bash
+docker run -v $(pwd):/var/www/findItForMe php:7.0-cli php /var/www/findItForMe/find.php
+```
+
+- If you run PHP directly, just do:
+```bash
+php find.php
+```
+
+## That's fine, but your command doesn't filter anything!
 
 The command has some options :
 
