@@ -1,0 +1,4 @@
+{% for offer in offers %}{{ offer.title }}.
+{% if null != offer.price %}{{ offer.price }}€{% else %}Pas de prix défini.{% endif %}
+
+{{ offer.url }}{% endfor %}

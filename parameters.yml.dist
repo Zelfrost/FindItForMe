@@ -1,18 +1,25 @@
-parameters:
-    smtp:
-        url: smtp url
-        port: smtp port
-        encryption: smtp encryption
+smtp:
+    url: smtp url
+    port: smtp port
+    encryption: smtp encryption
 
-        auth_mode: smtp auth mode
-        username: smtp username
-        password: smtp password
+    auth_mode: smtp auth mode
+    username: smtp username
+    password: smtp password
 
-    mail:
-        from: from mail
-        to: to mail
-        title: mail title
+mail:
+    from: from mail
+    to: to mail
+    title: mail title
 
-    leboncoin:
-        url: https://www.leboncoin.fr/recherche/
-        region: 1 # Your region id on leboncoin
+sms:
+    api_url: 'http://your_api'
+    api_auth_params:
+        user: api_login
+        pass: api_password
+    api_content_param: msg
+
+
+leboncoin:
+    url: https://www.leboncoin.fr/recherche/
+    region: 1 # Your region id on leboncoin

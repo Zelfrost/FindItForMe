@@ -10,9 +10,9 @@ class Renderer
         $this->twig = new Twig_Environment($loader);
     }
 
-    public function render(array $offers)
+    public function render(array $offers, string $mode)
     {
-        $template = $this->twig->load('template.html.twig');
+        $template = $this->twig->load("templates/$mode.html.twig");
 
         return $template->render(['offers' => $offers]);
     }

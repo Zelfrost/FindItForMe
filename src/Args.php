@@ -6,7 +6,7 @@
  * @method static getMaxPrice()
  * @method static authorizeNoPrice(): bool
  * @method static isVerbose(); bool
- * @method static sendMail(): bool
+ * @method static getMode(): string
  */
 class Args
 {
@@ -16,8 +16,8 @@ class Args
     private static $minPrice = null;
     private static $maxPrice = null;
     private static $noPrice = true;
-    private static $verbose = true;
-    private static $sendMail = true;
+    private static $verbose = false;
+    private static $mode = 'sms';
 
     public static function __callStatic($name, $arguments)
     {
@@ -45,9 +45,14 @@ class Args
         array_shift($argv);
         for ($i = 0; $i < sizeof($argv); $i ++) {
             switch ($argv[$i]) {
-                case '-nm':
-                case '--no-mail':
-                    self::$sendMail = false;
+                case '-m':
+                case '--mode':
+                    $mode = $argv[++ $i];
+                    if (!in_array($mode, ['sms', 'mail', 'none'])) {
+                        break;
+                    }
+
+                    self::$mode = $mode;
 
                     break;
                 case '-v':

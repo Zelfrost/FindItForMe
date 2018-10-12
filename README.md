@@ -36,6 +36,7 @@ All you have to do is edit the `parameters.yml` file :
 
 - The **smtp** section is about how it will send mail.
 - The **mail** part is about the email you will receive.
+- The **sms** part is about the sms you will receive.
 - The **leboncoin** part is about the website and your region. You can find you region id by processing a search on
 *Leboncoin.fr* on your web browser (with you region defined), and having a look at the parameter **regions**.
 
@@ -62,8 +63,8 @@ php find.php
 
 The command has some options :
 
-- **-nm** or **--no-mail**: if set, you won't receive any mail on this run. This is usefull to avoid getting 35 ads when
-you run the command for the first time. (Default: false)
+- **-m** or **--mode**: if set to "sms" or "mail", the application will send you an sms for each ads, or an email with all
+of them, depending on your choice. You can also set it to "none" if you don't want it to send you anything. (Default: sms)
 - **-v** or **--verbose**: if set, ads will be displayed on the standard output, with this format:
 `title|price|url`. (Default: false)
 - **-i** or **--ignore-no-price**: this option is used to tell that you don't want ads that do not have a price.

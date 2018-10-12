@@ -10,3 +10,4 @@ require_once('src/Mailer.php');
 require_once('src/Printer.php');
 require_once('src/Renderer.php');
 require_once('src/Requester.php');
+require_once('src/TextMessenger.php');

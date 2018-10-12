@@ -34,11 +34,16 @@ if (empty($offers)) {
     return;
 }
 
-if (Args::sendMail()) {
-    $renderer = new Renderer();
+$renderer = new Renderer();
+if ('mail' === Args::getMode()) {
     $mailer = new Mailer();
 
-    $mailer->send($renderer->render($offers));
+    $mailer->send($renderer->render($offers, Args::getMode()));
+} elseif ('sms' === Args::getMode()) {
+    $textMessenger = new TextMessenger();
+    foreach ($offers as $offer) {
+        $textMessenger->send($renderer->render([$offer], Args::getMode()));
+    }
 }
 
 if (Args::isVerbose()) {
