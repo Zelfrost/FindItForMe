@@ -1,6 +1,6 @@
 <?php
 
-class Mailer
+class MailSender implements SenderInterface
 {
     private $mailer;
 
@@ -19,7 +19,7 @@ class Mailer
         $this->mailer = new Swift_Mailer($transport);
     }
 
-    public function send(string $body)
+    public function send(string $body): bool
     {
         $mail = new Swift_Message(Config::get('mail.title'));
         $mail->setFrom(Config::get('mail.from'));
@@ -28,5 +28,12 @@ class Mailer
         $mail->setBody($body, 'text/html');
 
         $this->mailer->send($mail);
+
+        return true;
+    }
+
+    public function isUnitary(): bool
+    {
+        return false;
     }
 }

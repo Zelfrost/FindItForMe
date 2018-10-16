@@ -27,4 +27,27 @@ class Config
 
         return $value;
     }
+
+    public static function getLogFile()
+    {
+        return self::evaluatePath(self::get('log.file'));
+    }
+
+    public static function getBaseFile()
+    {
+        return self::evaluatePath(self::get('base.file'));
+    }
+
+    private static function evaluatePath(string $file): string
+    {
+        if ('/' !== substr($file, 0, 1)) {
+            return sprintf(
+                '%s/../%s',
+                __DIR__,
+                $file
+            );
+        }
+
+        return $file;
+    }
 }

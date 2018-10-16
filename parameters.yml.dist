@@ -23,3 +23,9 @@ sms:
 leboncoin:
     url: https://www.leboncoin.fr/recherche/
     region: 1 # Your region id on leboncoin
+
+log:
+    file: errors.log
+
+base:
+    file: base

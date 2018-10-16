@@ -8,18 +8,14 @@ $requester = new Requester();
 $crawler = new Crawler();
 $database = new Database();
 $printer = new Printer();
+$sender = new Sender();
 
 foreach ($crawler->getOffers($requester->getContent(Args::getParameters())) as $offer) {
     $details = $crawler->getDetails($offer);
 
-    if ($database->offerAlreadyExist($identifier = $details['identifier'])) {
+    if ($database->offerAlreadyExist($details['identifier'])) {
         continue;
-    }
-
-    $database->putOffer($identifier);
-    unset($details['identifier']);
-
-    if (null === $details['price'] && !Args::authorizeNoPrice()) {
+    } elseif (null === $details['price'] && !Args::authorizeNoPrice()) {
         continue;
     } elseif (null !== Args::getMinPrice() && Args::getMinPrice() > $details['price']) {
         continue;
@@ -28,24 +24,14 @@ foreach ($crawler->getOffers($requester->getContent(Args::getParameters())) as $
     }
 
     $offers[] = $details;
+
+    if (Args::isVerbose()) {
+        $printer->print($details);
+    }
 }
 
 if (empty($offers)) {
     return;
 }
 
-$renderer = new Renderer();
-if ('mail' === Args::getMode()) {
-    $mailer = new Mailer();
-
-    $mailer->send($renderer->render($offers, Args::getMode()));
-} elseif ('sms' === Args::getMode()) {
-    $textMessenger = new TextMessenger();
-    foreach ($offers as $offer) {
-        $textMessenger->send($renderer->render([$offer], Args::getMode()));
-    }
-}
-
-if (Args::isVerbose()) {
-    $printer->print($offers);
-}
+$sender->send($offers);

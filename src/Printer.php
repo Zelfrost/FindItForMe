@@ -2,10 +2,8 @@
 
 class Printer
 {
-    public function print(array $offers)
+    public function print(array $offer)
     {
-        foreach ($offers as $offer) {
-            echo "${offer['title']}|${offer['price']}|${offer['url']}\n";
-        }
+        echo "${offer['title']}|${offer['price']}|${offer['url']}\n";
     }
 }
