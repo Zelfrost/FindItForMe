@@ -4,8 +4,6 @@ use Guzzle\Http\Client;
 
 class Requester
 {
-    const LBC_URL = '?category=43&text=nintendo%20switch&regions=17&price=min-350';
-
     const HTML_HEADERS = [
         'Accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8',
         'Accept-Encoding' => 'gzip, deflate, br',
@@ -24,7 +22,7 @@ class Requester
     public function getContent($parameters) : string
     {
         if (-1 !== ($region = Config::get('leboncoin.region', -1))) {
-            $parameters['region'] = $region;
+            $parameters['locations'] = $region;
         }
 
         $parameters = http_build_query($parameters);

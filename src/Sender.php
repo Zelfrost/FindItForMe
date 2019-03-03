@@ -16,6 +16,14 @@ class Sender
 
     public function send(array $offers)
     {
+        if (null === $this->sender) {
+            foreach ($offers as $offer) {
+                $this->database->putOffer($offer['identifier']);
+            }
+
+            return;
+        }
+
         $this->sender->isUnitary()
             ? $this->sendUnitary($offers)
             : $this->sendBatch($offers)

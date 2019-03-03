@@ -2,11 +2,16 @@
 
 class SenderFactory
 {
+    /**
+     * @return SenderInterface|null
+     */
     public static function buildSender()
     {
-        return 'sms' === Args::getMode()
-            ? new TextMessageSender()
-            : new MailSender()
-        ;
+        switch (Args::getMode()) {
+            case 'sms':
+                return new TextMessageSender();
+            case 'mail':
+                return new MailSender();
+        }
     }
 }

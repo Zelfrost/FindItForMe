@@ -13,13 +13,12 @@ $sender = new Sender();
 foreach ($crawler->getOffers($requester->getContent(Args::getParameters())) as $offer) {
     $details = $crawler->getDetails($offer);
 
-    if ($database->offerAlreadyExist($details['identifier'])) {
-        continue;
-    } elseif (null === $details['price'] && !Args::authorizeNoPrice()) {
-        continue;
-    } elseif (null !== Args::getMinPrice() && Args::getMinPrice() > $details['price']) {
-        continue;
-    } elseif (null !== Args::getMaxPrice() && Args::getMaxPrice() < $details['price']) {
+    if ($database->offerAlreadyExist($details['identifier'])
+        || (null === $details['price'] && !Args::authorizeNoPrice())
+        || (null !== Args::getMinPrice() && (
+            Args::getMinPrice() > $details['price'] || Args::getMaxPrice() < $details['price'])
+        )
+    ) {
         continue;
     }
 

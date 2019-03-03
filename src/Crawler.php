@@ -22,7 +22,7 @@ class Crawler
 
         preg_match('/^\/[a-z_]+\/(\d+)\.htm\/$/', $url, $identifiers);
 
-        $priceNode = $crawler->filterXPath('//span[@itemprop="price"]')->getNode(0);
+        $priceNode = $crawler->filterXPath('//span[@itemprop="priceCurrency"]')->getNode(0);
         $price = null !== $priceNode ? (int) $priceNode->nodeValue : null;
 
         return [
